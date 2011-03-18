@@ -24,6 +24,8 @@
         from
       %th
         to
+      %th
+        &nbsp;
     %tr
       %td
         %span.order_id= @order.id 
@@ -41,6 +43,8 @@
         %span.from=     @order.from
       %td
         %span.to=       @order.to
+      %td
+        %a{:href => "/order/edit/#{@order.id}"} edit
 
 %br
 

@@ -1,0 +1,29 @@
+
+
+%form{:method => 'post' , :action => "/order/#{@order.id}"}
+  %input{:type => 'hidden' , :name => '_method' , :value => 'put'}
+  %table
+    %tr
+      %th
+        name
+      %th
+        code
+      %th
+        amount
+      %th
+        from
+      %th
+        to
+    %tr
+      %td
+        %input{:name => 'order[name]'   , :value => @order.name}
+      %td
+        %input{:name => 'order[code]'   , :value => @order.code}
+      %td
+        %input{:name => 'order[amount]' , :value => @order.amount}
+      %td
+        %input{:name => 'order[from]'   , :value => @order.from}
+      %td
+        %input{:name => 'order[to]'     , :value => @order.to}
+  
+  %input{:type => 'submit' , :value => 'update'}

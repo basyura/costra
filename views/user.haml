@@ -15,15 +15,20 @@
       %th
         %span hour
       %th
+        %span percent
+      %th
         %span travel
       %th
         %span date
     - @costs.each do |cost|
       %tr
         %td
-          %span= cost.order.name
+          %a{:href => "/order/#{cost.order_id}"}
+            %span= cost.order.name
         %td
           %span= cost.hour
+        %td{align: 'right'}
+          %span= "#{cost.order.use_percent} %"
         %td
           %span= cost.travel
         %td

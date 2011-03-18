@@ -44,6 +44,17 @@ post '/order' do
   redirect '/'
 end
 
+put '/order/:id' do
+  order = Order.find(params[:id])
+  order.update(params[:order])
+  redirect "/order/#{order.id}"
+end
+
+get '/order/edit/:id' do
+  @order = Order.find(:id => params[:id])
+  haml :order_edit
+end
+
 ##
 #
 #
