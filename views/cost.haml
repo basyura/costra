@@ -1,0 +1,10 @@
+%a{href: "/order/#{@cost.order_id}"} back
+
+%hr
+
+%form{:method => 'POST' , :action => "/order/cost/#{@cost.id}"}
+  %input{:type => 'hidden' , :name => '_method' , :value => 'PUT'}
+  = partial_haml(:cost_edit , :locals => {:cost => @cost , :users => @users})
+  %input{:type => 'submit' , :value => 'update'}
+
+      

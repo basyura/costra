@@ -1,0 +1,5 @@
+
+cost_percent: 
+hour_price: 
+db: sqlite://db/cost.db 
+debug: true

@@ -1,0 +1,98 @@
+
+%a{href: '/'} top
+%hr
+
+%h1== #{@order.name} - #{@order.use_percent}% used.
+
+
+.order
+  %table{border:1}
+    %tr
+      %th
+        id
+      %th
+        name
+      %th
+        code
+      %th
+        remain
+      %th
+        cost
+      %th
+        amount
+      %th
+        from
+      %th
+        to
+    %tr
+      %td
+        %span.order_id= @order.id 
+      %td
+        %span.name=     h @order.name
+      %td
+        %span.code=     h @order.code
+      %td
+        %span.remain=   @order.remain
+      %td
+        %span.cost=     @order.cost
+      %td
+        %span.amount=   @order.amount
+      %td
+        %span.from=     @order.from
+      %td
+        %span.to=       @order.to
+
+%br
+
+%form{:method => "POST", :action => "/order/cost/#{@order.id}"}
+  %input{:type => "hidden", :name => "_method", :value => "POST"}
+  %input{:type => 'hidden' , :name => 'cost[order_id]' , :value => @order.id}
+  = partial_haml(:cost_edit , :locals => {:cost => @cost , :users => @users})
+  %input{:type => "submit" , :value => 'add cost'}
+
+:javascript
+  ng.ready(function(){
+    new ng.Calendar({
+        input: 'date',
+        start_date: 'year - 1',
+        display_date: new Date()
+      });
+    });
+
+%hr
+
+.costs
+  %table{border:1}
+    %tr
+      %th
+        name
+      %th
+        hour
+      %th
+        travel
+      %th
+        date
+      %th
+        &nbsp;
+      %th
+        &nbsp;
+    - @order.costs.each do |cost|
+      %tr
+        %td
+          %span= h cost.user_name
+        %td
+          %span= cost.hour
+        %td
+          %span= cost.travel
+        %td
+          %span= cost.date
+        %td
+          %form{:method => "GET", :action => "/order/cost/#{cost.id}"}
+            %input{:type => "submit" , :value => 'edit'}
+        %td
+          %form{:method => "POST", :action => "/order/cost/#{cost.id}"}
+            %input{:type => "hidden", :name => "_method" , :value => "DELETE"}
+            %input{:type => "hidden", :name => "order_id", :value => @order.id}
+            %input{:type => "submit" , :value => 'delete'}
+
+

@@ -1,0 +1,13 @@
+%html
+  %head
+    %title Costs
+    %meta{:"http-equiv" => 'Content-Type' , :content => 'text/html' , :charset => 'utf-8'}
+    :javascript
+      var ng_config = {
+        assests_dir: '/js/ng/assets/'
+      }
+    %script{:type => "text/javascript" , :src => "/js/ng/ng_all.js"}
+    %script{:type => "text/javascript" , :src => "/js/ng/components/calendar.js"}
+
+  %body
+    != yield

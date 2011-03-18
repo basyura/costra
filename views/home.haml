@@ -1,0 +1,85 @@
+
+%h1 cost
+
+.order
+  %table{border:1}
+    %th 
+      %span id
+    %th 
+      %span name
+    %th 
+      %span code
+    %th 
+      %span remain
+    %th 
+      %span 使用原価
+    %th 
+      %span 原価
+    %th 
+      %span 売上
+    %th 
+      %span 開始
+    %th 
+      %span 終了
+    - @orders.each do |order|
+      %tr
+        %td 
+          %a{href: "/order/#{order.id}"}= order.id
+        %td 
+          %span= h order.name
+        %td 
+          %span= h order.code
+        %td{align: "right"}
+          %span= order.remain
+        %td{align: "right"}
+          %span== #{order.use_percent} %
+        %td 
+          %span= order.cost
+        %td 
+          %span= order.amount
+        %td 
+          %span= order.from
+        %td 
+          %span= order.to
+
+%hr
+.add_order
+  %form{:method => "POST", :action => "/order"}
+    %input{:type => "hidden", :name => "_method", :value => "POST"}
+    %table
+      %tr
+        %td name
+        %td 
+          %input{:type => "text", :name => "name"}
+      %tr
+        %td code
+        %td
+          %input{:type => 'text', :name => 'code'}
+      %tr
+        %td amount
+        %td
+          %input{:type => 'text', :name => 'amount'}
+      %tr
+        %td from
+        %td 
+          %input{:type => "text" , :id => "from" , :name => "from"}
+      %tr
+        %td to
+        %td 
+          %input{:type => "text" , :id => "to"   , :name => "to"}
+
+    %input{:type => "submit" , :value => 'add order'}
+
+:javascript
+  ng.ready(function(){
+    new ng.Calendar({
+        input: 'from',
+        start_date: 'year - 1',
+        display_date: new Date()
+      });
+    new ng.Calendar({
+        input: 'to',
+        start_date: 'year - 1',
+        display_date: new Date()
+      });
+    });

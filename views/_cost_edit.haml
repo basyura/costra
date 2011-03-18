@@ -1,0 +1,31 @@
+
+.cost_edit
+  %table{border:1}
+    %tr
+      %th
+        key
+      %th
+        value
+    %tr
+      %td
+        name
+      %td
+        %select{:name => 'cost[user_id]'}
+          -users.each do |user| 
+            %option{:value => user.id , 
+                    :selected => user.id == cost.user_id ? true : false}= user.name
+    %tr
+      %td
+        hour
+      %td
+        %input{:name => 'cost[hour]'  , :value => cost.hour}
+    %tr
+      %td
+        travel
+      %td
+        %input{:name => 'cost[travel]' , :value => cost.travel}
+    %tr
+      %td
+        date
+      %td
+        %input{:name => 'cost[date]'   , :value => cost.date}
