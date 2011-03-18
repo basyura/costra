@@ -70,6 +70,22 @@ delete '/order/cost/:id' do
   redirect '/order/' + params[:order_id]
 end
 
+##
+#
+#
+get '/user' do
+  @users = User.find_all
+  haml :user_list
+end
+
+get '/user/:id' do
+  @user  = User.find(:id => params[:id])
+  @user  = User.find(:name => params[:id]) unless @user
+  @costs = Cost.filter(:user_id => @user.id)
+
+  haml :user
+end
+
 helpers do
   include Rack::Utils; alias_method :h, :escape_html
 

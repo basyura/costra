@@ -79,7 +79,8 @@
     - @order.costs.each do |cost|
       %tr
         %td
-          %span= h cost.user_name
+          %a{:href => "/user/#{cost.user_id}"}
+            %span= h cost.user_name
         %td
           %span= cost.hour
         %td

@@ -1,0 +1,31 @@
+
+%a{:href => '/user'} back
+
+%hr
+
+%span= @user.name
+
+%hr
+
+.costs
+  %table{border: 1}
+    %tr
+      %th
+        %span order
+      %th
+        %span hour
+      %th
+        %span travel
+      %th
+        %span date
+    - @costs.each do |cost|
+      %tr
+        %td
+          %span= cost.order.name
+        %td
+          %span= cost.hour
+        %td
+          %span= cost.travel
+        %td
+          %span= cost.date
+

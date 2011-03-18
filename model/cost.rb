@@ -1,8 +1,9 @@
 
 class Cost < Sequel::Model
+  many_to_one :order
   set_schema do
     primary_key :id
-    foreign_key :order_id , :orders
+    foreign_key :order_id , :order
     integer     :user_id
     float       :hour
     float       :travel
