@@ -3,6 +3,10 @@
 
 %hr
 
+%form{:method => 'post' , :action => '/user'}
+  %input{:name => 'user[name]'}
+  %input{:type => 'submit' , :value => 'create user'}
+
 .users
   %ul
     - @users.each do |user|

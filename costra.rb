@@ -65,6 +65,7 @@ get '/order/cost/:id' do
 end
 
 post '/order/cost/:id' do
+  puts params[:cost]
   Cost.create(params[:cost]);
   redirect '/order/' + params[:id]
 end
@@ -95,6 +96,11 @@ get '/user/:id' do
   @costs = Cost.filter(:user_id => @user.id)
 
   haml :user
+end
+
+post '/user' do
+  User.create(params[:user])
+  redirect '/user'
 end
 
 helpers do

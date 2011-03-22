@@ -69,6 +69,8 @@
   %table{border:1}
     %tr
       %th
+        id
+      %th
         name
       %th
         hour
@@ -82,6 +84,8 @@
         &nbsp;
     - @order.costs.each do |cost|
       %tr
+        %td
+          %span= cost.id
         %td
           %a{:href => "/user/#{cost.user_id}"}
             %span= h cost.user_name
