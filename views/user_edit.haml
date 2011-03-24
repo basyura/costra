@@ -1,0 +1,9 @@
+
+%a{:href => "/user/#{@user.id}"}= 'back'
+
+%hr
+
+%form{:method => 'post'  , :action => "/user/#{@user.id}"}
+  %input{:type => 'hidden'  , :name => '_method'  , :value => 'put'}
+  %input{:type => 'text'    , :name => 'user[name]'     , :value=> @user.name }
+  %input{:type => 'submit'  , :value => 'update'}

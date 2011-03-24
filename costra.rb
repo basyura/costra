@@ -90,6 +90,13 @@ get '/user' do
   haml :user_list
 end
 
+post '/user' do
+  User.create(params[:user])
+  redirect '/user'
+end
+
+
+
 get '/user/:id' do
   @user  = User.find(:id => params[:id])
   @user  = User.find(:name => params[:id]) unless @user
@@ -98,9 +105,15 @@ get '/user/:id' do
   haml :user
 end
 
-post '/user' do
-  User.create(params[:user])
-  redirect '/user'
+get '/user/:id/edit' do
+  @user = User.find(:id => params[:id])
+  haml :user_edit
+end
+
+put '/user/:id' do
+  user = User.find(:id => params[:id])
+  user.update(params[:user])
+  redirect "/user/#{params[:id]}"
 end
 
 helpers do
